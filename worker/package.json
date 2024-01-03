@@ -8,5 +8,6 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon"
-  }
+  },
+  "type": "module"
 }
