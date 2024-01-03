@@ -13,29 +13,12 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import cors from 'cors'
 
+import { pgClient } from './database/postgres.js'
+
 const PORT = process.env.PORT || 5001
 const app = express()
 app.use(cors())
 app.use(bodyParser.json())
-
-// Postgres Client Setup
-import Client from 'pg'
-const pgClient = new Client.Client({
-  user: pgUser,
-  host: pgHost,
-  database: pgDatabase,
-  password: pgPassword,
-  port: pgPort,
-  ssl:
-    process.env.NODE_ENV !== 'production'
-      ? false
-      : { rejectUnauthorized: false },
-})
-pgClient.connect((err) => {
-  pgClient
-    .query('CREATE TABLE IF NOT EXISTS values (number INT)')
-    .catch((err) => console.error(err))
-})
 
 // Redis Client Setup
 import { createClient } from 'redis'
