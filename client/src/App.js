@@ -11,16 +11,14 @@ function App() {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          <Link to="/">Home</Link>
-          <Link to="/otherpage">Other Page</Link>
+          <div>
+            <Link className={'link-styles'} to="/">
+              Home
+            </Link>
+            <Link className={'link-styles'} to="/otherpage">
+              Other Page
+            </Link>
+          </div>
         </header>
         <Routes>
           <Route exact path="/" element={<Fib />} />
