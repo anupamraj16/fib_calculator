@@ -1,12 +1,4 @@
-import {
-  redisHost,
-  redisPort,
-  pgUser,
-  pgHost,
-  pgDatabase,
-  pgPassword,
-  pgPort,
-} from '../keys.js'
+import { pgUser, pgHost, pgDatabase, pgPassword, pgPort } from '../keys.js'
 
 // Postgres Client Setup
 import Client from 'pg'

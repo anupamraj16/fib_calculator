@@ -1,36 +1,15 @@
-import {
-  redisHost,
-  redisPort,
-  pgUser,
-  pgHost,
-  pgDatabase,
-  pgPassword,
-  pgPort,
-} from './keys.js'
-
 // Express App Setup
 import express from 'express'
 import bodyParser from 'body-parser'
 import cors from 'cors'
 
 import { pgClient } from './database/postgres.js'
+import { redisClient } from './database/redis.js'
 
 const PORT = process.env.PORT || 5001
 const app = express()
 app.use(cors())
 app.use(bodyParser.json())
-
-// Redis Client Setup
-import { createClient } from 'redis'
-const redisClient = createClient({
-  url: `${redisHost}://${redisHost}:${redisPort}`,
-  retry_strategy: () => 1000,
-})
-redisClient.on('error', (err) => console.log('Redis Client Error', err))
-await redisClient.connect()
-const subscriber = redisClient.duplicate()
-subscriber.on('error', (err) => console.error(err))
-await subscriber.connect()
 
 // Express route handlers
 app.get('/values/all', async (req, res) => {
