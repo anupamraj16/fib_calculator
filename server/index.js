@@ -3,8 +3,7 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import cors from 'cors'
 
-import { pgClient } from './database/postgres.js'
-import { redisClient } from './database/redis.js'
+import { pgClient, redisClient } from './database/index.js'
 
 const PORT = process.env.PORT || 5001
 const app = express()
