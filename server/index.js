@@ -30,7 +30,10 @@ app.post('/values', async (req, res) => {
 
   redisClient.hSet('values', index, 'Nothing yet!')
   redisClient.publish('insert', index)
-  pgClient.query('INSERT INTO values(number) VALUES($1)', [index])
+  pgClient.query('INSERT INTO values(number, fib_value) VALUES($1, $2)', [
+    index,
+    0,
+  ])
 
   res.send({ working: true })
 })

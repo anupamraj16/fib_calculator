@@ -5,9 +5,13 @@ function fib(index) {
   return fib(index - 1) + fib(index - 2)
 }
 
-const listener = (message, channel) => {
+const listener = async (message, channel) => {
   const fibValue = fib(parseInt(message))
   redisClient.hSet('values', message, fibValue)
+  await pgClient.query('UPDATE values SET fib_value = $2 WHERE number = $1', [
+    message,
+    fibValue,
+  ])
 }
 
 await subscriber.subscribe('insert', listener)

@@ -15,6 +15,6 @@ export const pgClient = new Client.Client({
 })
 pgClient.connect((err) => {
   pgClient
-    .query('CREATE TABLE IF NOT EXISTS values (number INT)')
+    .query('CREATE TABLE IF NOT EXISTS values (number INT, fib_value INT)')
     .catch((err) => console.error(err))
 })

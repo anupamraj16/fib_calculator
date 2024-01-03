@@ -13,8 +13,4 @@ export const pgClient = new Client.Client({
       ? false
       : { rejectUnauthorized: false },
 })
-pgClient.connect((err) => {
-  pgClient
-    .query('CREATE TABLE IF NOT EXISTS values (number INT)')
-    .catch((err) => console.error(err))
-})
+pgClient.connect()
