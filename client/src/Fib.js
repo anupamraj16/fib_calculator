@@ -33,7 +33,10 @@ class Fib extends Component {
     })
     this.setState({ index: '' })
     this.fetchValues()
-    setTimeout(() => this.fetchValues(), 2000)
+    setTimeout(() => {
+      this.fetchValues()
+      this.fetchIndexes()
+    }, 2000)
   }
 
   renderSeenIndexes() {
