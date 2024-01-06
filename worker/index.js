@@ -1,5 +1,6 @@
 import { pgClient, redisClient, subscriber } from './database/index.js'
 
+// intentionally left as an inefficient algorithm
 function fib(index) {
   if (index < 2) return 1
   return fib(index - 1) + fib(index - 2)
