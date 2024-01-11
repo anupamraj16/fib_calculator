@@ -1,0 +1,42 @@
+apiVersion: skaffold/v4beta8
+kind: Config
+deploy:
+  kubectl:
+    flags:
+      apply:
+        - "-f"
+        - "k8s"
+metadata:
+  name: fib-calculator
+build:
+  local:
+    push: false
+  artifacts:
+    - image: araj7/fib_calculator_client
+      context: client
+      docker:
+        dockerfile: Dockerfile.dev
+      sync:
+        manual:
+          - src: "src/**/*.js"
+            dest: .
+          - src: "src/**/*.css"
+            dest: .
+          - src: "src/**/*.html"
+            dest: .
+    - image: araj7/fib_calculator_server
+      context: server
+      docker:
+        dockerfile: Dockerfile.dev
+      sync:
+        manual:
+          - src: "*.js"
+            dest: .
+    - image: araj7/fib_calculator_worker
+      context: worker
+      docker:
+        dockerfile: Dockerfile.dev
+      sync:
+        manual:
+          - src: "*.js"
+            dest: .
