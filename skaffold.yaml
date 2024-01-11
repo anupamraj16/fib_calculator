@@ -1,6 +1,7 @@
-apiVersion: skaffold/v4beta8
+apiVersion: skaffold/v4beta9
 kind: Config
 deploy:
+  statusCheckDeadlineSeconds: 600
   kubectl:
     flags:
       apply:
